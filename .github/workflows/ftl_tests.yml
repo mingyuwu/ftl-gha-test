@@ -1,0 +1,25 @@
+name: Integration tests
+
+on:
+  workflow_dispatch
+  
+jobs:
+
+  test_ftl:
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{needs.check_and_prepare.outputs.github_ref}}
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+      - name: 'Set up Cloud SDK'
+        uses: google-github-actions/setup-gcloud@v0
+      - name: Run iOS integration tests on Real Device via FTL
+        timeout-minutes: 60
+        uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
+        with:
+          testapp_dir: ${{ github.workspace }}
+          test_type: "game-loop"
