@@ -10,10 +10,12 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
+        python_version: ['2.7', '3.7', '3.10']
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          ref: ${{needs.check_and_prepare.outputs.github_ref}}
+          python-version: ${{ matrix.python_version }}
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0'
