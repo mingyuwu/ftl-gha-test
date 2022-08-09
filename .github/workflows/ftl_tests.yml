@@ -21,7 +21,7 @@ jobs:
         timeout-minutes: 60
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
         env:
-          GOOGLE_CREDENTIALS: ${{ secrets.FPL_CREDENTIALS }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
           testapp_dir: ${{ github.workspace }}
           test_type: ${{ matrix.test_type }}
