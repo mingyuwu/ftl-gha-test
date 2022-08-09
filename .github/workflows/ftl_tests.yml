@@ -10,8 +10,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        python_version: ['2.7', '3.6', '3.7', '3.8', '3.10']
-        test_type: ['game-loop', 'xctest']
+        python_version: ['2.7', '3.10']
+        test_type: ['game-loop', 'robo']
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -20,8 +20,8 @@ jobs:
       - name: Run iOS integration tests on Real Device via FTL
         timeout-minutes: 60
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.FPL_CREDENTIALS }}
         with:
           testapp_dir: ${{ github.workspace }}
           test_type: ${{ matrix.test_type }}
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
