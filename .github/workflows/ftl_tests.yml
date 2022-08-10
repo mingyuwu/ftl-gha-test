@@ -11,7 +11,16 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         python_version: ['2.7', '3.10']
-        test_type: ['game-loop', 'xctest', 'robo']
+        test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
+        include:
+          - test_type: game-loop
+            testapp_dir: ${{ github.workspace }}
+          - test_type: xctest
+            testapp_dir: ${{ github.workspace }}/xctest
+          - test_type: robo
+            testapp_dir: ${{ github.workspace }}
+          - test_type: instrumentation
+            testapp_dir: ${{ github.workspace }}/instrumentation
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -23,5 +32,5 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
-          testapp_dir: ${{ github.workspace }}
+          testapp_dir: ${{ matrix.testapp_dir }}
           test_type: ${{ matrix.test_type }}
