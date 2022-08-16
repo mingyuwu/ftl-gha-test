@@ -8,16 +8,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-12]
         python_version: ['3.7']
         test_type: ['instrumentation']
         # os: [macos-latest, ubuntu-latest, windows-latest]
         # python_version: ['2.7', '3.10']
         # test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
-    env:
-      bot_token_secret: ${{ secrets.GHASecretsGPGPassphrase1 }}
-    outputs:
-      matrix: ${{ steps.generate_matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v3
       - run: pip install absl-py
