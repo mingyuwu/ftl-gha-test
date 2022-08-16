@@ -27,3 +27,4 @@ jobs:
           test_type: ${{ matrix.test_type }}
       - run: echo ${{ steps.ftl_test.outputs.test_summary }}
         shell: bash
+        if: ${{ !cancelled() }}
