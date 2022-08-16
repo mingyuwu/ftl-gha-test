@@ -10,8 +10,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python_version: ['2.7', '3.10']
-        test_type: ['robo', 'instrumentation']
+        python_version: ['2.7']
+        test_type: ['instrumentation']
         # os: [macos-latest, ubuntu-latest, windows-latest]
         # python_version: ['2.7', '3.10']
         # test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']

@@ -1,9 +1,12 @@
 import argparse
 import json
+import logging
+from absl import logging
 
 def main():
   test = { "abc": 12 }
   print("test: %s" % test)
+  logging.info("test: %s" % test)
   print("test: %s" % json.dumps(test))
   test = { "abc": 12, "def": [{"a":"a", "b":"b"}, {"a":"a", "b":"b"}] }
   print("test: %s" % test)
