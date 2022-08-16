@@ -7,8 +7,9 @@ def main():
   args = parser.parse_args()
   print("--test_result: %s" % args.test_result)
   test_result = json.loads(args.test_result)
-  for result in test_result:
-    print("return_code: %s; ftl_link: %s" % (result.get("return_code"), result.get("ftl_link")))
+  print("project_id: %s" % test_result.get("project_id"))
+  for app in test_result.get("apps"):
+    print("return_code: %s; ftl_link: %s" % (app.get("return_code"), app.get("ftl_link")))
 
 if __name__ == '__main__':
   main()
