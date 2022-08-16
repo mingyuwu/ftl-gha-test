@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python_version }}
-      - name: Run tests on FTL
+      - name: ftl_test
         timeout-minutes: 60
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
         env:
@@ -25,3 +25,5 @@ jobs:
         with:
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
+      - run: echo ${{ steps.ftl_test.outputs.test_summary }}
+        shell: bash
