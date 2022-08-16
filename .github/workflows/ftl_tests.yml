@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python_version }}
+      - run: pip install absl-py
+        shell: bash
       - id: ftl_test
         timeout-minutes: 60
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
