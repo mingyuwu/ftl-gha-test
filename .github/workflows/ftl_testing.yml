@@ -22,14 +22,14 @@ jobs:
           python-version: ${{ matrix.python_version }}
       - run: pip install absl-py
         shell: bash
-      # - id: ftl_test
-      #   timeout-minutes: 60
-      #   uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
-      #   env:
-      #     GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-      #   with:
-      #     testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
-      #     test_type: ${{ matrix.test_type }}
+      - id: ftl_test
+        timeout-minutes: 60
+        uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        with:
+          testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
+          test_type: ${{ matrix.test_type }}
       - run: python read_test_result.py -r "${{ steps.ftl_test.outputs.test_summary }}"
         shell: bash
         if: ${{ !cancelled() }}
