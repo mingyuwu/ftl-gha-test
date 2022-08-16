@@ -25,6 +25,6 @@ jobs:
         with:
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
-      - run: echo ${{ steps.ftl_test.outputs.test_summary }}
+      - run: python read_test_result.py --test_result ${{ steps.ftl_test.outputs.test_summary }}
         shell: bash
         if: ${{ !cancelled() }}
