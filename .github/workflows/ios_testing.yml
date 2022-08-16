@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "123"
       - name: ftl-tests
-          uses: FirebaseExtended/github-actions/firebase-test-lab@gl/firebase-test-lab
-          with:
-            testapp_dir: "${GITHUB_WORKSPACE}/scripts/firebase_test_lab/testapp"
-            key_file: "${GITHUB_WORKSPACE}/games-project-key.json"
+        uses: FirebaseExtended/github-actions/firebase-test-lab@gl/firebase-test-lab
+        with:
+          testapp_dir: "${GITHUB_WORKSPACE}/scripts/firebase_test_lab/testapp"
+          key_file: "${GITHUB_WORKSPACE}/games-project-key.json"
