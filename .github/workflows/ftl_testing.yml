@@ -1,4 +1,4 @@
-name: FTL Tests
+name: FTL_Tests
 
 on: workflow_dispatch
   
@@ -14,15 +14,15 @@ jobs:
         # os: [macos-latest, ubuntu-latest, windows-latest]
         # python_version: ['2.7', '3.10']
         # test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
+    env:
+      bot_token_secret: ${{ secrets.GHASecretsGPGPassphrase1 }}
+    outputs:
+      matrix: ${{ steps.generate_matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python_version }}
       - run: pip install absl-py
         shell: bash
       - id: ftl_test
-        timeout-minutes: 60
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
