@@ -21,10 +21,7 @@ jobs:
         with:
           python-version: ${{ matrix.python_version }}
       - id: ftl_test
-        timeout-minutes: 60
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
