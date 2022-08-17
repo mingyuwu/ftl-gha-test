@@ -11,7 +11,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python_version: ['3.7']
-        test_type: ['robo']
+        test_type: ['xctest']
         # os: [macos-latest, ubuntu-latest, windows-latest]
         # python_version: ['2.7', '3.10']
         # test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
@@ -20,19 +20,15 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python_version }}
-      - uses: 'google-github-actions/auth@v0'
-        with:
-          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-      - uses: google-github-actions/setup-gcloud@v0
-        with:
-          install_components: 'beta'
       - id: ftl_test
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
-        # env:
-        #   FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        env:
+          FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
+          test_devices: "model=iphone8,version=13.6;model=iphone8,version=14.7"
+          additional_flags: "--xcode-version=11.3"
       - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
         shell: bash
         if: ${{ !cancelled() }}
