@@ -26,8 +26,8 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
-          test_type: ${{ matrix.test_type }}
-          test_devices: "model=iphone8,version=13.6;model=iphone8,version=14.7"
+          # test_type: ${{ matrix.test_type }}
+          # test_devices: "model=iphone8,version=13.6;model=iphone8,version=14.7"
       - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
         shell: bash
         if: ${{ !cancelled() }}
