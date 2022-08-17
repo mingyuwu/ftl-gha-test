@@ -22,7 +22,7 @@ jobs:
           python-version: ${{ matrix.python_version }}
       - uses: 'google-github-actions/auth@v0'
         with:
-          credentials_json: '${{ env.FIREBASE_SERVICE_ACCOUNT_CREDENTIALS }}'
+          credentials_json: '${{ env.GOOGLE_CREDENTIALS }}'
       - uses: google-github-actions/setup-gcloud@v0
         with:
           install_components: 'beta'
