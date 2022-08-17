@@ -9,9 +9,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        python_version: ['2.7', '3.10']
-        test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
+        os: [ubuntu-latest]
+        python_version: ['3.7']
+        test_type: ['robo']
+        # os: [macos-latest, ubuntu-latest, windows-latest]
+        # python_version: ['2.7', '3.10']
+        # test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
