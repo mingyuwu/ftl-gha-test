@@ -23,7 +23,7 @@ jobs:
       - id: ftl_test
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
         env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
