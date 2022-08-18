@@ -1,9 +1,7 @@
 robo-1:
   app: testapps/robo/it-debug_1.apk
   type: robo
-  device: model=redfin,version=30
 
 robo-2:
   app: testapps/robo/it-debug_2.apk
   type: robo
-  device: model=oriole,version=33
