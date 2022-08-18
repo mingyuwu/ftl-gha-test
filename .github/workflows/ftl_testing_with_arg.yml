@@ -5,17 +5,11 @@ on:
   
 jobs:
   ftl_testing:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        python_version: ['3.7']
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python_version }}
       - id: ftl_test
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
         env:
