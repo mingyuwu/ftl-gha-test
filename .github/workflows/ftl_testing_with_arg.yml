@@ -1,0 +1,27 @@
+name: FTL Tests with YAML-input
+
+on:
+  workflow_dispatch
+  
+jobs:
+  ftl_testing:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python_version: ['3.7']
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python_version }}
+      - id: ftl_test
+        uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
+        env:
+          FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        with:
+          arg_groups: demo_arg.yaml:robo-1;demo_arg.yaml:xctest-1;demo_arg.yaml:game-loop-1;demo_arg.yaml:game-loop-2
+      - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
+        shell: bash
+        if: ${{ !cancelled() }}
