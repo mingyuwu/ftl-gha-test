@@ -21,7 +21,7 @@ jobs:
         env:
           FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
-          arg_groups: demo_arg.yaml:robo-1;demo_arg.yaml:xctest-1;demo_arg.yaml:game-loop-1;demo_arg.yaml:game-loop-2
+          arg_groups: demo_arg.yaml:robo-1;demo_arg.yaml:robo-2
       - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
         shell: bash
         if: ${{ !cancelled() }}

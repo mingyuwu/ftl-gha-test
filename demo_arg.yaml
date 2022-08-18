@@ -1,20 +1,9 @@
 robo-1:
   app: testapps/robo/it-debug_1.apk
   type: robo
-
-xctest-1:
-  test: testapps/xctest/xctest_1.apk
-  type: xctest
-  device: model=iphone8,version=13.6
-  device: model=iphone8,version=14.7
-
-game-loop-1:
-  app: testapps/game-loop/it-debug_1.apk
-  type: game-loop
   device: model=redfin,version=30
   device: model=oriole,version=33
 
-game-loop-2:
-  app: testapps/game-loop/integration_test_1.ipa
-  type: game-loop
-  device: model=iphone8,version=13.6
+robo-2:
+  app: testapps/robo/it-debug_2.apk
+  type: robo
