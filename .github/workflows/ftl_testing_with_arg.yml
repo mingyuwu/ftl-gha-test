@@ -12,9 +12,8 @@ jobs:
       - uses: actions/checkout@v3
       - id: ftl_test
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
-        env:
-          FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           arg_groups: demo_arg.yaml:robo-1;demo_arg.yaml:robo-2
       - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
         shell: bash
