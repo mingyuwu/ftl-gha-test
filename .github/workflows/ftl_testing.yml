@@ -22,9 +22,8 @@ jobs:
           python-version: ${{ matrix.python_version }}
       - id: ftl_test
         uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
-        env:
-          FIREBASE_SERVICE_ACCOUNT_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
       - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
