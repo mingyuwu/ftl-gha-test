@@ -18,3 +18,20 @@ jobs:
       - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
         shell: bash
         if: ${{ !cancelled() }}
+
+  ftl_testing_mixed:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
+    steps:
+      - uses: actions/checkout@v3
+      - id: ftl_test
+        uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+          arg_groups: demo_arg.yaml:robo-1;demo_arg.yaml:multi-device-group
+          testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
+
+
