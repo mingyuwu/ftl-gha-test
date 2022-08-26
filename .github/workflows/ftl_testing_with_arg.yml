@@ -33,5 +33,6 @@ jobs:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           arg_groups: demo_arg.yaml:robo-1;demo_arg.yaml:multi-device-group
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
+          test_type: ${{ matrix.test_type }}
 
 
