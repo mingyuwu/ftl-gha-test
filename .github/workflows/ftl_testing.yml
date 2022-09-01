@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: ${{ matrix.python_version }}
       - id: ftl_test
-        uses: FirebaseExtended/github-actions/firebase-test-lab@test/firebase-test-lab-gameloop
+        uses: FirebaseExtended/github-actions/firebase-test-lab@feature/ftl-validate
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
