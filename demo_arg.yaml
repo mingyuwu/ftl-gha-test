@@ -4,7 +4,6 @@ instrumentation:
   test: testapps/instrumentation/instrumentation/app-debug-androidTest.apk
   device:
     - {model: x1q}
-    - {model: q2q, version: 30}
     - {model: q2q, version: 31}
 
 robo-1:
@@ -15,6 +14,5 @@ robo-2:
   app: testapps/robo/it-debug_2.apk
   type: robo
   device:
-    - {model: flo}
-    - {model: g3, version: 19}
-    - {model: mako, version: 21}
+    - {model: x1q}
+    - {model: q2q, version: 31}

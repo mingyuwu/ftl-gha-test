@@ -19,7 +19,4 @@ jobs:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
-      - id: read_ftl_test_result
-        if: ${{ !cancelled() }}
-        shell: bash
-        run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
+      - run: echo '${{ steps.ftl_test.outputs.test_summary }}'

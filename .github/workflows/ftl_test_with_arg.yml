@@ -15,7 +15,4 @@ jobs:
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           arg_groups: demo_arg.yaml:instrumentation;demo_arg.yaml:robo-1;demo_arg.yaml:robo-2
-      - id: read_ftl_test_result
-        if: ${{ !cancelled() }}
-        shell: bash
-        run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
+      - run: echo '${{ steps.ftl_test.outputs.test_summary }}'
