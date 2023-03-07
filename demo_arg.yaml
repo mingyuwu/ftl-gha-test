@@ -1,7 +1,7 @@
 instrumentation:
   type: instrumentation
   app: testapps/instrumentation/instrumentation/app-debug.apk
-  test: testapps/instrumentation/instrumentation/aapp-debug-androidTest.apk
+  test: testapps/instrumentation/instrumentation/app-debug-androidTest.apk
   device:
     - {model: flo}
     - {model: g3, version: 19}
