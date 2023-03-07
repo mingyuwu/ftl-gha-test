@@ -1,3 +1,12 @@
+instrumentation:
+  type: instrumentation
+  app: testapps/instrumentation/instrumentation/app-debug.apk
+  test: testapps/instrumentation/instrumentation/aapp-debug-androidTest.apk
+  device:
+    - {model: flo}
+    - {model: g3, version: 19}
+    - {model: mako, version: 21}
+
 robo-1:
   app: testapps/robo/it-debug_1.apk
   type: robo
@@ -5,8 +14,6 @@ robo-1:
 robo-2:
   app: testapps/robo/it-debug_2.apk
   type: robo
-
-multi-device-group:
   device:
     - {model: flo}
     - {model: g3, version: 19}
