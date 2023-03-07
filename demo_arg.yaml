@@ -3,9 +3,9 @@ instrumentation:
   app: testapps/instrumentation/instrumentation/app-debug.apk
   test: testapps/instrumentation/instrumentation/app-debug-androidTest.apk
   device:
-    - {model: flo}
-    - {model: g3, version: 19}
-    - {model: mako, version: 21}
+    - {model: x1q}
+    - {model: q2q, version: 30}
+    - {model: q2q, version: 31}
 
 robo-1:
   app: testapps/robo/it-debug_1.apk
