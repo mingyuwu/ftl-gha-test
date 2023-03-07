@@ -1,4 +1,4 @@
-name: FTL Tests
+name: FTL Example
 
 on:
   workflow_dispatch
@@ -9,23 +9,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # os: [ubuntu-latest]
-        # python_version: ['3.7']
-        # test_type: ['robo']
         os: [macos-latest, ubuntu-latest, windows-latest]
-        python_version: ['2.7', '3.10']
         test_type: ['game-loop', 'xctest', 'robo', 'instrumentation']
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python_version }}
       - id: ftl_test
         uses: FirebaseExtended/github-actions/firebase-test-lab@v1.1
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
-      - run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
-        shell: bash
+      - id: read_ftl_test_result
         if: ${{ !cancelled() }}
+        shell: bash
+        run: python read_test_result.py -r '${{ steps.ftl_test.outputs.test_summary }}'
