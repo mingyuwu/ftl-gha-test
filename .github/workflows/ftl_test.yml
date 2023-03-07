@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: ftl_test
-        uses: FirebaseExtended/github-actions/firebase-test-lab@v1.1
+        uses: FirebaseExtended/github-actions/firebase-test-lab@master
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
