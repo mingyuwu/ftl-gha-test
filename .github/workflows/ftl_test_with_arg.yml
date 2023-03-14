@@ -16,5 +16,5 @@ jobs:
         uses: FirebaseExtended/github-actions/firebase-test-lab@master
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
-          arg_groups: 
+          arg_groups: ${{ matrix.arg_groups }}
       - run: echo '${{ steps.ftl_test.outputs.test_summary }}'
