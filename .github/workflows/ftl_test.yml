@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-13, ubuntu-20.04]
         test_type: ['game-loop', 'robo']
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +24,7 @@ jobs:
       - run: echo '${{ steps.ftl_test.outputs.test_summary }}'
 
   ftl_testing_with_arg:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
