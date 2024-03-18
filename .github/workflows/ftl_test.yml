@@ -15,10 +15,6 @@ jobs:
         test_type: ['game-loop', 'robo']
     steps:
       - uses: actions/checkout@v3
-      - name: Setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'
       - id: ftl_test
         uses: FirebaseExtended/github-actions/firebase-test-lab@master
         with:
