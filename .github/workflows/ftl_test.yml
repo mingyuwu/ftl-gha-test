@@ -1,7 +1,9 @@
 name: FTL Example
 
 on:
-  workflow_dispatch
+  pull_request:
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
   
 jobs:
   ftl_testing:
@@ -20,3 +22,20 @@ jobs:
           testapp_dir: ${{ github.workspace }}/testapps/${{ matrix.test_type }}
           test_type: ${{ matrix.test_type }}
       - run: echo '${{ steps.ftl_test.outputs.test_summary }}'
+
+  ftl_testing_with_arg:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arg_groups: ["demo_arg.yaml:instrumentation","demo_arg.yaml:instrumentation;demo_arg.yaml:robo-1"]
+    steps:
+      - uses: actions/checkout@v3
+      - id: ftl_test
+        uses: FirebaseExtended/github-actions/firebase-test-lab@master
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+          arg_groups: ${{ matrix.arg_groups }}
+      - run: echo '${{ steps.ftl_test.outputs.test_summary }}'
+
+      
