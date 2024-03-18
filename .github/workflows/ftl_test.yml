@@ -1,7 +1,9 @@
 name: FTL Example
 
 on:
-  workflow_dispatch
+  pull_request:
+    types: [opened, reopened, synchronize]
+  workflow_dispatch:
   
 jobs:
   ftl_testing:
